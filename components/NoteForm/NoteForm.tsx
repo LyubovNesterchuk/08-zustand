@@ -7,9 +7,8 @@ import toast from 'react-hot-toast';
 
 import styles from './NoteForm.module.css';
 import { useNoteDraftStore } from '@/lib/store/noteStore';
-import { createNote, NewNote } from '@/lib/api';
-
-
+import { createNote } from '@/lib/api';
+import { NewNote } from '@/types/note';
 
 export default function NoteForm() {
   const queryClient = useQueryClient();

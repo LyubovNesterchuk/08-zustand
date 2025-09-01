@@ -1,4 +1,4 @@
-import { Note } from "@/types/note";
+import { NewNote, Note } from "@/types/note";
 import axios from "axios";
 
 
@@ -42,26 +42,11 @@ export const fetchNotes = async (
   
 };
 
-
-export interface NewNote {
-  title: string,
-  content: string,
-  tag: string,
-};
-
 export const createNote = async (
   newNote: NewNote): Promise<Note> => {
   const response = await axios.post<Note>("/notes", newNote, config);
   return response.data;
 };
-
-
-// export const createNote = async (
-//   newNote: Pick<Note, "title" | "content" | "tag">
-// ): Promise<Note> => {
-//   const response = await axios.post<Note>("/notes", newNote, config);
-//   return response.data;
-// };
 
 export const deleteNote = async (noteId: string): Promise<Note> => {
   const response = await axios.delete<Note>(`/notes/${noteId}`, config);

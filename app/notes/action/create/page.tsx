@@ -33,32 +33,3 @@ export default function CreateNotePage() {
   );
 }
 
-
-
-// import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
-
-// import CreateNoteClient from "./CreateNote.client";
-// import { createNote } from "@/lib/api";
-
-// type CreateNotePageProps = {
-//   params: Promise<{ newNote: Pick<Note, "title" | "content" | "tag"> }>;
-// };
-
-
-// export default async function CreateNotePage({
-//   params }: CreateNotePageProps) {
-
-// const {  } = await params;
-// const queryClient = new QueryClient();
-
-// await queryClient.prefetchQuery({
-//   queryKey: ["notes", newNote],
-//   queryFn: () => createNote( newNote),
-// });
-
-// return (
-//   <HydrationBoundary state={dehydrate(queryClient)}>
-//     <CreateNoteClient />
-//   </HydrationBoundary>
-//   );
-// }
