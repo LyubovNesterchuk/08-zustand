@@ -10,6 +10,7 @@ import { useNoteDraftStore } from '@/lib/store/noteStore';
 import { createNote } from '@/lib/api';
 import { NewNote } from '@/types/note';
 
+
 export default function NoteForm() {
   const queryClient = useQueryClient();
   const router = useRouter();
