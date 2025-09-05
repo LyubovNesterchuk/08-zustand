@@ -1,7 +1,8 @@
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import { Metadata } from "next";
+
 import { fetchNotes } from "@/lib/api";
 import NotesClient from "./Notes.client";
-import { Metadata } from "next";
 
 type NotesPageProps = {
   params: Promise<{ slug: string[] }>;
@@ -13,6 +14,7 @@ export async function generateMetadata({ params }: NotesPageProps): Promise<Meta
 
   return {
     title: tag === "All" ? "Notes - All Users" : `Notes - ${tag}`,
+    description: "Your notes",
 
     openGraph: {
       title: tag === "All" ? "Notes - All Users" : `Notes - ${tag}`,
@@ -27,13 +29,12 @@ export async function generateMetadata({ params }: NotesPageProps): Promise<Meta
           alt: tag === "All" ? "Notes - All Users" : `Notes - ${tag}`,
         },
       ],
-      type: 'article',
+      type: 'website',
     },
   }
 }
 
-export default async function NotesPage({
-  params }: NotesPageProps) {
+export default async function NotesPage({ params }: NotesPageProps) {
 
   const { slug = [] } = await params;
   const tag = slug[0] && slug[0] !== "All" ? slug[0] : undefined;

@@ -1,7 +1,8 @@
 'use client';
 
 import { useId } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+// import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation} from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 
@@ -12,7 +13,7 @@ import { NewNote } from '@/types/note';
 
 
 export default function NoteForm() {
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
   const router = useRouter();
   const fieldId = useId();
 
@@ -31,7 +32,7 @@ export default function NoteForm() {
     mutationFn: createNote,
     onSuccess: () => {
       toast.success('Note created!');
-      queryClient.invalidateQueries({ queryKey: ['notes'] });
+      // queryClient.invalidateQueries({ queryKey: ['notes'] });
       clearDraft(); 
       router.push('/notes/filter/all');
     },
@@ -49,11 +50,17 @@ export default function NoteForm() {
 };
 
    const handleCancel = () => {
-    router.back();
+    // router.back();
+    router.push('/notes/filter/all');
   };
 
   return (
-    <form className={styles.form} action={handleSubmit}>
+    // <form className={styles.form} action={handleSubmit}>
+    <form className={styles.form} onSubmit={(e) => {
+      e.preventDefault();
+      const formData = new FormData(e.currentTarget);
+      handleSubmit(formData);
+    }}>
       <div className={styles.formGroup}>
         <label htmlFor={`${fieldId}-title`}>Title</label>
         <input
@@ -84,7 +91,8 @@ export default function NoteForm() {
         <select
           id={`${fieldId}-tag`}
           name="tag"
-          defaultValue={draft?.tag}
+          // defaultValue={draft?.tag}
+          defaultValue={draft?.tag === "all" ? "Todo" : draft?.tag ?? "Todo"}
           onChange={handleChange}
           className={styles.select}
         >

@@ -29,10 +29,12 @@ export const fetchNotes = async (
     perPage,
   };
 
-    if (tag) {
+  //   if (tag) {
+  //   params.tag = tag;
+  // }
+  if (tag && tag !== "all") {
     params.tag = tag;
   }
-
   const response = await axios.get<FetchNotesResponse>("/notes", {
     ...config,
     params,

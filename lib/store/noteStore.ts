@@ -1,6 +1,7 @@
-import { NewNote } from "@/types/note";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+
+import { NewNote } from "@/types/note";
 
 const initialDraft: NewNote = {
   title: "",

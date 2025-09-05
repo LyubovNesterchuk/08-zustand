@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+
 import NoteForm from "@/components/NoteForm/NoteForm";
 import css from "./CreateNote.module.css";
 
 export const metadata: Metadata = {
   title: "Create note - NoteHub",
   description: "Create a new note and save it as a draft before submitting.",
+  
   openGraph: {
     title: "Create note - NoteHub",
     description: "Page for creating a new note with draft saving support.",
